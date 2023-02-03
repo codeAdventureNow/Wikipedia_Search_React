@@ -7,11 +7,11 @@ function App() {
   const [error, setError] = useState();
 
   function clearInput() {
-    setUser();
+    setUser('');
   }
 
-  const removeArticles = (e) => {
-    setPerson({});
+  const removeArticles = () => {
+    setPerson([]);
   };
 
   const fetchData = async () => {
@@ -27,6 +27,7 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    clearInput();
     fetchData();
   }
 
