@@ -2,26 +2,27 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  const [user, setUser] = useState('');
-  const [person, setPerson] = useState([]);
+  const [search, setSearch] = useState('');
+  // const [search, setSearch] = useState('');
+  const [snippet, setSnippet] = useState([]);
   const [error, setError] = useState();
 
   function clearInput() {
-    setUser('');
+    setSearch('');
   }
 
   const removeArticles = () => {
-    setPerson([]);
+    setSnippet([]);
   };
 
   const fetchData = async () => {
-    const URL = `https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&srsearch=${user}`;
-    // const URL = `https://api.github.com/users/${user}`;
-    if (!user) return;
+    const URL = `https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&srsearch=${search}`;
+    // const URL = `https://api.github.com/users/${search}`;
+    if (!search) return;
 
     const result = await fetch(URL);
     result.json().then((json) => {
-      setPerson(json.query.search);
+      setSnippet(json.query.search);
     });
   };
 
@@ -31,7 +32,7 @@ function App() {
     fetchData();
   }
 
-  // console.log(person.query);
+  // console.log(snippet.query);
 
   return (
     <div className='App'>
@@ -45,8 +46,8 @@ function App() {
                 className='inputSearch'
                 placeholder='Search Wikipedia'
                 type='text'
-                value={user}
-                onChange={(e) => setUser(e.target.value)}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               ></input>
             </div>
             <div className='buttons'>
@@ -59,7 +60,7 @@ function App() {
             </div>
           </form>
 
-          {person?.map((article) => (
+          {snippet?.map((article) => (
             <div key={article.pageid} id='app'>
               <a
                 href={`https://en.wikipedia.org/?curid=${article.pageid}`}
