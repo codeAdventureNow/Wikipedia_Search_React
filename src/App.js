@@ -3,7 +3,16 @@ import { useState } from 'react';
 
 function App() {
   const [user, setUser] = useState('');
-  const [person, setPerson] = useState({});
+  const [person, setPerson] = useState([]);
+  const [error, setError] = useState();
+
+  function clearInput() {
+    setUser();
+  }
+
+  const removeArticles = (e) => {
+    setPerson({});
+  };
 
   const fetchData = async () => {
     const URL = `https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&srsearch=${user}`;
@@ -12,7 +21,7 @@ function App() {
 
     const result = await fetch(URL);
     result.json().then((json) => {
-      setPerson(json);
+      setPerson(json.query.search);
     });
   };
 
@@ -21,18 +30,18 @@ function App() {
     fetchData();
   }
 
-  console.log(person.query);
+  // console.log(person.query);
 
   return (
     <div className='App'>
-      <div className='page-wrapper'>
-        <main className='main-content'>
-          <h1 className='main-heading'>Wikipedia Search</h1>
+      <div className='pageWrapper'>
+        <main className='mainContent'>
+          <h1 className='mainHeading'>Wikipedia Search</h1>
           <form onSubmit={handleSubmit}>
-            <div className='input-container'>
+            <div className='inputContainer'>
               <input
                 id='input'
-                className='input-search'
+                className='inputSearch'
                 placeholder='Search Wikipedia'
                 type='text'
                 value={user}
@@ -40,24 +49,26 @@ function App() {
               ></input>
             </div>
             <div className='buttons'>
-              <button type='submit' className='button-search' id='fetchdata'>
+              <button type='submit' className='buttonSearch' id='fetchdata'>
                 Search
               </button>
-              <button className='clear-search-btn'>Back</button>
+              <button onClick={removeArticles} className='clearSearchBtn'>
+                Back
+              </button>
             </div>
           </form>
-          {person.query &&
-            person.query.search.map((article) => (
-              <div id='app'>
-                <a
-                  href={`https://en.wikipedia.org/?curid=${article.pageid}`}
-                  target='_blank'
-                  className='articles'
-                >
-                  <p>{article.snippet}</p>
-                </a>
-              </div>
-            ))}
+
+          {person?.map((article) => (
+            <div key={article.pageid} id='app'>
+              <a
+                href={`https://en.wikipedia.org/?curid=${article.pageid}`}
+                target='_blank'
+                className='articles'
+              >
+                <p>{article.snippet.replace(/<\/?[^>]+>/gi, '')}</p>
+              </a>
+            </div>
+          ))}
         </main>
       </div>
     </div>

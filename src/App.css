@@ -10,13 +10,13 @@ body {
   background: #b3995d;
 }
 
-.main-content {
+.mainContent {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.main-heading {
+.mainHeading {
   margin-top: 2rem;
   font-size: 34px;
   color: #aa0000;
@@ -24,20 +24,20 @@ body {
   font-weight: bold;
 }
 
-.page-wrapper {
+.pageWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.input-container {
+.inputContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.button-search,
-.clear-search-btn {
+.buttonSearch,
+.clearSearchBtn {
   background-color: gold;
   border: none;
   color: black;
@@ -50,7 +50,7 @@ body {
   margin: 10px 10px;
 }
 
-.clear-search-btn {
+.clearSearchBtn {
   margin-top: 1rem;
 }
 
@@ -65,11 +65,11 @@ a {
   text-decoration: none;
 }
 
-.button-search {
+.buttonSearch {
   margin-top: 1rem;
 }
 
-.input-search {
+.inputSearch {
   margin-top: 1rem;
 }
 
@@ -101,7 +101,7 @@ a {
 }
 
 @media (min-width: 768px) {
-  .main-heading {
+  .mainHeading {
     margin-top: 3rem;
     font-size: 48px;
     color: #aa0000;
