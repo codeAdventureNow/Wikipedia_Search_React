@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 function App() {
   const [search, setSearch] = useState('');
-  // const [search, setSearch] = useState('');
   const [snippet, setSnippet] = useState([]);
   const [error, setError] = useState();
 
@@ -17,7 +16,6 @@ function App() {
 
   const fetchData = async () => {
     const URL = `https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&srsearch=${search}`;
-    // const URL = `https://api.github.com/users/${search}`;
     if (!search) return;
 
     const result = await fetch(URL);
@@ -32,7 +30,7 @@ function App() {
     fetchData();
   }
 
-  // console.log(snippet.query);
+
 
   return (
     <div className='App'>
