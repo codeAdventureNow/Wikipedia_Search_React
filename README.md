@@ -12,13 +12,12 @@ This is the second project where I hit an API and mapped the results to be displ
 ## Lessons Learned
 - Async/Await to make API calls.
 
-- Mapping user profiles.
+- Optional chaining.
   
-- use State to store objects and arrays.
+- Working with JSON.
 
 
 ## Getting Started
-
 
 1.  npm install
 2.  npm run start
